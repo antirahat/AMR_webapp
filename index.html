@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AMR Pharmacovigilance Dashboard - Real-time antimicrobial resistance monitoring and surveillance system for Bangladesh">
+    <title>Authority AMR - National Surveillance Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Mobile Sidebar Toggle -->
+        <button class="sidebar-toggle" aria-label="Toggle Sidebar">
+            <i class="bi bi-list"></i>
+        </button>
+        
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay"></div>
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    <i class="bi bi-shield-plus"></i>
+                </div>
+                <div class="brand-info">
+                    <h1>Authority AMR</h1>
+                    <span>Bangladesh Monitoring</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" id="nav-dashboard">
+                            <i class="bi bi-grid-1x2-fill"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="nav-hotspot">
+                            <i class="bi bi-geo-alt"></i>
+                            Hotspot Map
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="nav-registry">
+                            <i class="bi bi-journal-text"></i>
+                            Sales Registry
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="nav-alerts">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            Risk Alerts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="nav-reports">
+                            <i class="bi bi-file-earmark-bar-graph"></i>
+                            Reports
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <span>AR</span>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">Dr. Ahmed R.</div>
+                        <div class="user-role">DG Health Service</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="nav-brand">
+                    <div class="brand-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <span class="nav-brand-text">
+                        AMR
+                        <span>Pharmacovigilance</span>
+                    </span>
+                </div>
+                
+                <div class="location-tabs">
+                    <button class="location-tab active" id="tab-dhaka">Dhaka</button>
+                    <button class="location-tab" id="tab-chittagong">Chittagong</button>
+                    <button class="location-tab" id="tab-sylhet">Sylhet</button>
+                    <button class="location-tab" id="tab-rajshahi">Rajshahi</button>
+                    
+                    <div class="nav-search">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search Districts..." id="district-search">
+                    </div>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="btn-export" id="btn-export-report">
+                        <i class="bi bi-download"></i>
+                        Export Report
+                    </button>
+                    <button class="btn-notification" id="btn-notifications" aria-label="Notifications">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title">National Surveillance Overview</h2>
+                        <p class="page-subtitle">Real-time data synchronization from 4,205 certified POS systems across Bangladesh.</p>
+                    </div>
+                    <div class="status-badge">
+                        <span class="pulse"></span>
+                        SYSTEMS ONLINE
+                    </div>
+                </div>
+                
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card" id="card-sales">
+                        <div class="stat-header">
+                            <span class="stat-label">Total Antibiotic Sales</span>
+                            <div class="stat-icon">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">1.24M</div>
+                        <div class="stat-change positive">
+                            <i class="bi bi-arrow-up"></i>
+                            +5.2% <span class="text-muted">vs last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" id="card-amr-cases">
+                        <div class="stat-header">
+                            <span class="stat-label">Confirmed AMR Cases</span>
+                            <div class="stat-icon">
+                                <i class="bi bi-virus"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">14,205</div>
+                        <div class="stat-change neutral">
+                            <i class="bi bi-arrow-up"></i>
+                            +1.8% <span class="text-muted">active tracking</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" id="card-resistance">
+                        <div class="stat-header">
+                            <span class="stat-label">Avg. Resistance Rate</span>
+                            <div class="stat-icon">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">18.4%</div>
+                        <div class="stat-change negative">
+                            <i class="bi bi-arrow-up"></i>
+                            +0.5% <span class="text-muted">critical threshold 20%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" id="card-alerts">
+                        <div class="stat-header">
+                            <span class="stat-label">High-Risk Alerts</span>
+                            <div class="stat-icon">
+                                <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">243</div>
+                        <div class="stat-change neutral">
+                            <i class="bi bi-arrow-up"></i>
+                            +12% <span class="text-muted">pending review</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Map Section -->
+                    <section class="map-section">
+                        <div class="map-header">
+                            <h3 class="map-title">Real-time Hotspot Analysis</h3>
+                            <div class="map-controls">
+                                <select class="map-filter" id="filter-intensity">
+                                    <option value="resistance">Resistance Intensity</option>
+                                    <option value="sales">Sales Volume</option>
+                                    <option value="alerts">Alert Density</option>
+                                </select>
+                                <button class="map-settings" aria-label="Map Settings">
+                                    <i class="bi bi-gear"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <!-- Map Placeholder with Dhaka styling -->
+                            <div class="map-placeholder" style="background: linear-gradient(180deg, #1e3a5f 0%, #0f1a24 100%); position: relative;">
+                                <!-- Simulated map overlay -->
+                                <svg width="100%" height="100%" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+                                    <defs>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    <!-- Grid lines -->
+                                    <g stroke="#2d4a6a" stroke-width="0.5" opacity="0.3">
+                                        <line x1="0" y1="90" x2="600" y2="90"/>
+                                        <line x1="0" y1="180" x2="600" y2="180"/>
+                                        <line x1="0" y1="270" x2="600" y2="270"/>
+                                        <line x1="0" y1="360" x2="600" y2="360"/>
+                                        <line x1="120" y1="0" x2="120" y2="450"/>
+                                        <line x1="240" y1="0" x2="240" y2="450"/>
+                                        <line x1="360" y1="0" x2="360" y2="450"/>
+                                        <line x1="480" y1="0" x2="480" y2="450"/>
+                                    </g>
+                                    <!-- Hotspot markers -->
+                                    <circle cx="300" cy="200" r="25" fill="#ef4444" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="300" cy="200" r="12" fill="#ef4444" opacity="0.8"/>
+                                    
+                                    <circle cx="380" cy="280" r="20" fill="#f97316" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="380" cy="280" r="10" fill="#f97316" opacity="0.8"/>
+                                    
+                                    <circle cx="200" cy="150" r="18" fill="#f59e0b" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="200" cy="150" r="8" fill="#f59e0b" opacity="0.8"/>
+                                    
+                                    <circle cx="450" cy="180" r="15" fill="#10b981" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="450" cy="180" r="7" fill="#10b981" opacity="0.8"/>
+                                    
+                                    <circle cx="150" cy="300" r="12" fill="#10b981" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="150" cy="300" r="6" fill="#10b981" opacity="0.8"/>
+                                    
+                                    <circle cx="480" cy="350" r="18" fill="#f97316" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="480" cy="350" r="9" fill="#f97316" opacity="0.8"/>
+                                    
+                                    <circle cx="250" cy="380" r="14" fill="#f59e0b" opacity="0.3" filter="url(#glow)"/>
+                                    <circle cx="250" cy="380" r="7" fill="#f59e0b" opacity="0.8"/>
+                                    
+                                    <!-- Location labels -->
+                                    <text x="300" y="235" fill="#fff" font-size="10" text-anchor="middle" opacity="0.7">Dhaka Central</text>
+                                    <text x="380" y="305" fill="#fff" font-size="9" text-anchor="middle" opacity="0.6">Keraniganj</text>
+                                    <text x="200" y="175" fill="#fff" font-size="9" text-anchor="middle" opacity="0.6">Uttara</text>
+                                    <text x="450" y="205" fill="#fff" font-size="9" text-anchor="middle" opacity="0.6">Bashundhara</text>
+                                </svg>
+                            </div>
+                            
+                            <!-- Legend -->
+                            <div class="map-legend">
+                                <div class="legend-title">Legend</div>
+                                <div class="legend-item">
+                                    <span class="legend-dot critical"></span>
+                                    Critical Resistance (>30%)
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot high"></span>
+                                    High Risk (20-30%)
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot moderate"></span>
+                                    Moderate (10-20%)
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot controlled"></span>
+                                    Controlled (<10%)
+                                </div>
+                            </div>
+                            
+                            <!-- Zoom Controls -->
+                            <div class="map-zoom-controls">
+                                <button class="zoom-btn" aria-label="Zoom In">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                                <button class="zoom-btn" aria-label="Zoom Out">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Right Panel -->
+                    <aside class="right-panel">
+                        <!-- AI Risk Detections -->
+                        <section class="risk-panel">
+                            <div class="panel-header">
+                                <i class="bi bi-robot"></i>
+                                <h3 class="panel-title">AI Risk Detections</h3>
+                            </div>
+                            <div class="risk-alerts">
+                                <div class="risk-alert" id="alert-1">
+                                    <div class="risk-alert-header">
+                                        <span class="risk-alert-title">Spike in Azithromycin Sales</span>
+                                        <span class="risk-alert-time">2m ago</span>
+                                    </div>
+                                    <p class="risk-alert-description">Uttara Sector 4 detected 400% above normal daily volume.</p>
+                                </div>
+                                <div class="risk-alert warning" id="alert-2">
+                                    <div class="risk-alert-header">
+                                        <span class="risk-alert-title">Cross-Border Anomaly</span>
+                                        <span class="risk-alert-time">14m ago</span>
+                                    </div>
+                                    <p class="risk-alert-description">Unusual procurement patterns in Sylhet border pharmacies.</p>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- Recent Sales Registry -->
+                        <section class="registry-panel">
+                            <div class="registry-header">
+                                <div class="registry-title">
+                                    <i class="bi bi-list-ul"></i>
+                                    Recent Sales Registry
+                                </div>
+                                <span class="live-indicator"></span>
+                            </div>
+                            <table class="registry-table">
+                                <thead>
+                                    <tr>
+                                        <th>Medication</th>
+                                        <th>Qty</th>
+                                        <th>Risk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="sale-1">
+                                        <td>
+                                            <span class="medication-name">Azithromycin 500mg</span>
+                                            <span class="medication-details">Popular Pharma • Dhanmondi</span>
+                                        </td>
+                                        <td class="qty-cell">
+                                            <span class="qty-value">10</span>
+                                            <span class="qty-unit">tabs</span>
+                                        </td>
+                                        <td><span class="risk-badge low">LOW</span></td>
+                                    </tr>
+                                    <tr id="sale-2">
+                                        <td>
+                                            <span class="medication-name">Ciprofloxacin</span>
+                                            <span class="medication-details">HealthPlus • Mirpur</span>
+                                        </td>
+                                        <td class="qty-cell">
+                                            <span class="qty-value">14</span>
+                                            <span class="qty-unit">tabs</span>
+                                        </td>
+                                        <td><span class="risk-badge med">MED</span></td>
+                                    </tr>
+                                    <tr id="sale-3">
+                                        <td>
+                                            <span class="medication-name">Amoxicillin/Clav</span>
+                                            <span class="medication-details">Green City Meds • Gulshan</span>
+                                        </td>
+                                        <td class="qty-cell">
+                                            <span class="qty-value">21</span>
+                                            <span class="qty-unit">tabs</span>
+                                        </td>
+                                        <td><span class="risk-badge high">HIGH</span></td>
+                                    </tr>
+                                    <tr id="sale-4">
+                                        <td>
+                                            <span class="medication-name">Doxycycline</span>
+                                            <span class="medication-details">Lazz Pharma • Dhaka</span>
+                                        </td>
+                                        <td class="qty-cell">
+                                            <span class="qty-value">10</span>
+                                            <span class="qty-unit">tabs</span>
+                                        </td>
+                                        <td><span class="risk-badge low">LOW</span></td>
+                                    </tr>
+                                    <tr id="sale-5">
+                                        <td>
+                                            <span class="medication-name">Ceftriaxone Inj</span>
+                                            <span class="medication-details">Apex General • Savar</span>
+                                        </td>
+                                        <td class="qty-cell">
+                                            <span class="qty-value">5</span>
+                                            <span class="qty-unit">vials</span>
+                                        </td>
+                                        <td><span class="risk-badge crit">CRIT</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
